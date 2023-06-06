@@ -9,6 +9,7 @@ const User = db.user;
 const validateEmail = async (req, res) => {
   const { email } = req.body;
 
+  console.log(email);
   const data = await User.findOne({ where: { email }, attributes: ["email"] });
   !data ? res.json({ valid: true }) : res.json({ valid: false });
 };

@@ -33,7 +33,5 @@ const validateUser = async (req, res) => {
 };
 
 module.exports = {
-  validateEmail,
   validateUser,
-  addUser,
 };

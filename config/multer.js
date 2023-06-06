@@ -1,15 +1,12 @@
 var multer = require("multer");
 const path = require("path");
+const dir = path.resolve(__dirname, "../../backend/public/upload");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(
-      null,
-      "/home/aditya-thakor/Desktop/tasks/shopping/backend/public/upload"
-    );
+    cb(null, dir);
   },
   filename: (req, file, cb) => {
-    console.log("file", file);
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });

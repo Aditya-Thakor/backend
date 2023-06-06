@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      prod_price: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+      },
       prod_category: {
         type: Sequelize.STRING,
         allowNull: false,

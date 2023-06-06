@@ -20,7 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       prod_title: {
         type: DataTypes.STRING,
       },
+      prod_price: {
+        type: DataTypes.BIGINT,
+      },
       prod_category: {
+        type: DataTypes.STRING,
+      },
+      prod_image: {
         type: DataTypes.STRING,
       },
       prod_desc: {

@@ -1,11 +1,11 @@
-const { raw } = require("express");
 const db = require("../models/index");
-const dotenv = require("dotenv");
-dotenv.config();
-const SECRET_KEY = process.env.SECRET_KEY;
 const Cart = db.cart;
 
-const addCart = async (req, res) => {};
+const addCart = async (req, res) => {
+  console.log("add to cart here");
+  // const re = await Cart.create({ where: { cart_id: res.body.cart } });
+  res.json({ status: 200, valid: true, data: [] });
+};
 
 const showCart = async (req, res) => {
   const products = await Cart.findAll({

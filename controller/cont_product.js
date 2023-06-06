@@ -11,19 +11,48 @@ const addProduct = async (req, res) => {
     req.body;
   const prod_image = req.file.filename;
 
-  await Product.create({
-    prod_title: product_title,
-    prod_desc: product_desc,
-    prod_image,
-    prod_category,
-  });
+  try {
+    await Product.create({
+      prod_title: product_title,
+      prod_desc: product_desc,
+      prod_image: "/upload/" + prod_image,
+      prod_category: product_category,
+      prod_price: product_price,
+    });
+
+    res.json({ status: 200, valid: true });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: 200, valid: false });
+  }
 };
 
-const updateProduct = (req, res) => {
-  const { data } = req.body;
+const viewProducts = async (req, res) => {
+  const getProduct = await Product.findAll();
+  const arr = [];
+  getProduct.map((_, i) => arr.push(getProduct[i].toJSON()));
+  res.json({ data: arr, status: 200, valid: true });
 };
 
+const updateProduct = async (req, res) => {
+  await Product.update({ newData: {} }, { where: { prod_id: 1 } });
+};
+
+const singleProduct = async (req, res) => {
+  const { prod_id } = req.body;
+  const getProduct = await Product.findOne({ where: { prod_id } });
+  const data = getProduct.toJSON();
+
+  res.json({ data, status: 200, valid: true });
+};
+
+const deleteProduct = async (req, res) => {
+  await Product.destroy({ where: { prod_id: 1 } });
+};
 module.exports = {
   addProduct,
+  viewProducts,
+  singleProduct,
   updateProduct,
+  deleteProduct,
 };
