@@ -11,13 +11,23 @@ module.exports = {
       },
       admin_name: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      admin_email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      admin_password: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });

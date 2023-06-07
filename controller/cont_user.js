@@ -16,7 +16,7 @@ const validateEmail = async (req, res) => {
 
 const addUser = async (req, res) => {
   const { username, email, password } = req.body;
-  const hashPass = await bcrypt.genSalt(10, password);
+  const hashPass = await bcrypt.hash(password, 10);
 
   await User.create({ name: username, email, password: hashPass });
   res.json({ status: 200 });
@@ -38,7 +38,8 @@ const validateUser = async (req, res) => {
       if (isValid) {
         const payload = { id: 1 };
         const token = jwt.sign(payload, SECRET_KEY, { expiresIn: 1024 * 1024 });
-        res.json({ status: 200, valid: true, token });
+        const data = { token, role: "user" };
+        res.json({ status: 200, valid: true, data });
       } else {
         res.json({ status: 200, valid: false });
       }

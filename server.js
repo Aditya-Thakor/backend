@@ -6,6 +6,7 @@ dotenv.config();
 
 const userRoute = require("./routes/userRoute");
 const cartRoute = require("./routes/cartRoute");
+const adminRoute = require("./routes/adminRoute");
 const productRoute = require("./routes/productRoute");
 
 const app = express();
@@ -20,5 +21,6 @@ app.use(cors());
 app.use("/api/", userRoute);
 app.use("/api/", cartRoute);
 app.use("/api/", productRoute);
+app.use("/api/", adminRoute);
 
-app.listen(PORT, () => console.log(`http://192.168.10.58:${PORT}`));
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
