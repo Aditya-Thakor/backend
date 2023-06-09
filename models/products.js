@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       prod_image: {
         type: DataTypes.STRING,
       },
+      prod_img_name: {
+        type: DataTypes.STRING,
+      },
       prod_desc: {
         type: DataTypes.STRING,
       },

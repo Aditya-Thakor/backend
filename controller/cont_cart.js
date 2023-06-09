@@ -2,7 +2,6 @@ const db = require("../models/index");
 const Cart = db.cart;
 
 const addCart = async (req, res) => {
-  console.log("add to cart here");
   // const re = await Cart.create({ where: { cart_id: res.body.cart } });
   res.json({ status: 200, valid: true, data: [] });
 };

@@ -2,15 +2,22 @@ const bcrypt = require("bcryptjs");
 const db = require("../models/index");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { sendResponse } = require("../service/response");
 
 dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 const Admin = db.admin;
 
+const showAdmin = async (req, res) => {
+  const adminData = await Admin.findAll();
+  const data = [];
+  adminData.map((_, i) => data.push(adminData[i].toJSON()));
+  sendResponse({ res, data });
+};
+
 const emailAdmin = async (req, res) => {
   const { email } = req.body;
 
-  console.log(email);
   const data = await Admin.findOne({
     where: { admin_email: email },
     attributes: ["admin_email"],
@@ -59,5 +66,6 @@ const validAdmin = async (req, res) => {
 module.exports = {
   validAdmin,
   emailAdmin,
+  showAdmin,
   addAdmin,
 };

@@ -9,7 +9,7 @@ const {
 
 const Router = require("express").Router();
 
-Router.post("/add-product", upload.single("product_image"), addProduct);
+Router.post("/add-product", upload.single("prod_image"), addProduct);
 
 Router.post("/view-products", viewProducts);
 
@@ -17,6 +17,6 @@ Router.post("/single-product", singleProduct);
 
 Router.post("/delete-product", deleteProduct);
 
-Router.post("/update-product", updateProduct);
+Router.post("/update-product", upload.single("prod_image"), updateProduct);
 
 module.exports = Router;
