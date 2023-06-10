@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      admin_role: {
+      admin_roles: {
         type: Sequelize.STRING,
         allowNull: false,
       },

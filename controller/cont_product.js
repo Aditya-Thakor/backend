@@ -32,6 +32,7 @@ const updateProduct = async (req, res) => {
         prod_category,
         prod_price,
         prod_img_name: req.file.originalname,
+        updatedAt: now(),
       },
       { where: { prod_id } }
     );
