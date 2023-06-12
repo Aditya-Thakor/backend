@@ -20,8 +20,8 @@ Router.get("/show-admin", showAdmin);
 
 Router.post("/single-admin", singleAdmin);
 
-Router.post("/update-admin", updateAdmin);
+Router.put("/update-admin", updateAdmin);
 
-Router.post("/delete-admin", deleteAdmin);
+Router.delete("/delete-admin", deleteAdmin);
 
 module.exports = Router;

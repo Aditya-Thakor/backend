@@ -12,17 +12,25 @@ const viewProducts = async (req, res) => {
 };
 
 const singleProduct = async (req, res) => {
-  const { prod_id } = req.body;
-  const getProduct = await Product.findOne({ where: { prod_id } });
-  const data = getProduct.toJSON();
-  sendResponse({ res, data });
+  const { prod_id } = req.params;
+  try {
+    const getProduct = await Product.findOne({ where: { prod_id: +prod_id } });
+    if (getProduct) {
+      const data = getProduct.toJSON();
+      sendResponse({ res, data });
+    } else {
+      sendResponse({ res, valid: false });
+    }
+  } catch (error) {
+    sendResponse({ res, valid: false });
+  }
 };
 
 const updateProduct = async (req, res) => {
   const { prod_desc, prod_price, prod_title, prod_category, prod_id } =
     req.body;
   const prod_image = req.file.filename;
-
+  console.log(req.file.filename);
   try {
     await Product.update(
       {
@@ -32,7 +40,7 @@ const updateProduct = async (req, res) => {
         prod_category,
         prod_price,
         prod_img_name: req.file.originalname,
-        updatedAt: now(),
+        updatedAt: new Date(),
       },
       { where: { prod_id } }
     );

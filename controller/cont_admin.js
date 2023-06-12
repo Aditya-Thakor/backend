@@ -49,6 +49,7 @@ const addAdmin = async (req, res) => {
 
 const singleAdmin = async (req, res) => {
   const { id } = req.body;
+
   const getAdmin = await Admin.findOne({ where: { id } });
   const data = getAdmin.toJSON();
   sendResponse({ res, data: { ...data, admin_password: "" } });
@@ -71,7 +72,7 @@ const updateAdmin = async (req, res) => {
       {
         admin_name: username,
         admin_email: email,
-        admin_roles: roles,
+        admin_roles: roles.toString(),
         updatedAt: new Date(),
       },
       { where: { id } }

@@ -13,10 +13,10 @@ Router.post("/add-product", upload.single("prod_image"), addProduct);
 
 Router.post("/view-products", viewProducts);
 
-Router.post("/single-product", singleProduct);
+Router.get("/single-product/:prod_id", singleProduct);
 
 Router.post("/delete-product", deleteProduct);
 
-Router.post("/update-product", upload.single("prod_image"), updateProduct);
+Router.put("/update-product", upload.single("prod_image"), updateProduct);
 
 module.exports = Router;
